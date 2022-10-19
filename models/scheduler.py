@@ -26,8 +26,8 @@ class Scheduler:
             print(f"Job with name {uuidValue} already exists")
             return uuidValue
 
-        monad = RedisMaybeMonad(uuidValue, json.dumps(data)) #\
-            #.bind(self.redis.set_key)
+        monad = RedisMaybeMonad(uuidValue, json.dumps(data)) \
+            .bind(self.redis.set_key)
         if monad.has_errors():
             return uuidValue
 

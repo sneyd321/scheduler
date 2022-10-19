@@ -1,16 +1,7 @@
 version: '3.5'
 
 services: 
-    scheduler:
-      image: sneyd321/scheduler
-      ports:
-        - 8084:8084
-      
-    
-
-   
-   
-          
-
- 
-    
+  redis: 
+    image: sneyd321/redis
+    ports:
+     - 6379:6379
