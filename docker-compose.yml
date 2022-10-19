@@ -1,0 +1,16 @@
+version: '3.5'
+
+services: 
+    scheduler:
+      image: sneyd321/scheduler
+      ports:
+        - 8084:8084
+      
+    
+
+   
+   
+          
+
+ 
+    
