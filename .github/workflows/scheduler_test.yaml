@@ -34,6 +34,7 @@ jobs:
       - name: Build Containers
         run: |
           docker build -t sneyd321/redis ./Redis-docker-kubernetes
+          gcloud iam service-accounts keys create ServiceAccount.json --iam-account=scheduler@roomr-222721.iam.gserviceaccount.com
           docker build -t sneyd321/scheduler .
       - name: Boot Docker Compose
         run: |
@@ -56,3 +57,7 @@ jobs:
       - name: Test with pytest
         run: |
           pytest tests/test_scheduler.py 
+      - name: Delete Service Account Key
+        if: always()
+        run: |
+          python remove_key.py
