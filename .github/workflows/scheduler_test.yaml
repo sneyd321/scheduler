@@ -39,9 +39,10 @@ jobs:
           gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
           docker compose up -d
+          docker container ls
       - name: Test with pytest
         run: |
-          pytest tests/test_scheduler.py 
+          docker exec -it scheduler-scheduler-1 pytest tests/test_scheduler.py 
       - name: Delete Service Account Key
         if: always()
         run: |

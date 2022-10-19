@@ -8,7 +8,7 @@ async def test_Scheduler_successfully_schedules_job():
     uuidValue = scheduler.schedule_job("upload-service", {})
     check = False
     for item in scheduler.list_jobs():
-        if str(uuidValue)==item:
+        if uuidValue == item:
             check = True
             break
     assert check

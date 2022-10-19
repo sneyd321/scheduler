@@ -21,8 +21,9 @@ class Scheduler:
 
     def schedule_job(self, image, data): 
         uuidValue = uuid.uuid4()
-        if self.job_exists(f"{uuidValue}"):
-            scheduler.delete_job(f"{uuidValue}")
+        uuidValue = str(uuidValue)
+        if self.job_exists(uuidValue):
+            scheduler.delete_job(uuidValue)
             print(f"Job with name {uuidValue} already exists")
             return uuidValue
 
@@ -31,9 +32,9 @@ class Scheduler:
         if monad.has_errors():
             return uuidValue
 
-        job = Job(f"{uuidValue}")
-        container = Container(image, f"{uuidValue}")
-        container.add_environment_variables("REDIS_HOST", os.environ.get("REDIS_HOST", "host.docker.internal"))
+        job = Job(uuidValue)
+        container = Container(image, uuidValue)
+        container.add_environment_variables("REDIS_HOST", os.environ.get("REDIS_HOST", "localhost"))
         container.add_command("python")
         container.add_command("main.py")
         container.add_command(f"--key={uuidValue}")
