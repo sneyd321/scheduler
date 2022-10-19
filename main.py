@@ -31,4 +31,4 @@ async def upload_maintenance_ticket(request: MaintenanceTicketUploadSchema):
     return {"status": "Job scheduled successfully"}
 
 if __name__ == '__main__':
-    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8084)))
+    uvicorn.run(app, port=int(os.environ.get("PORT", 8084)))
