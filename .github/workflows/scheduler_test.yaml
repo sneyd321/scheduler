@@ -26,14 +26,14 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
-      - name: Checkout Redis Repo
-        uses: actions/checkout@v3
-        with:
-          repository: sneyd321/Redis-docker-kubernetes
-          path: Redis-docker-kubernetes
+      #- name: Checkout Redis Repo
+      #  uses: actions/checkout@v3
+      #  with:
+      #   repository: sneyd321/Redis-docker-kubernetes
+      #   path: Redis-docker-kubernetes
+      # docker build -t sneyd321/redis ./Redis-docker-kubernetes
       - name: Build Containers
         run: |
-          docker build -t sneyd321/redis ./Redis-docker-kubernetes
           gcloud iam service-accounts keys create ServiceAccount.json --iam-account=scheduler@roomr-222721.iam.gserviceaccount.com
           gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
