@@ -43,7 +43,7 @@ jobs:
       - name: Test with pytest
         run: |
           
-          docker exec -t scheduler-scheduler-1 pytest tests/test_scheduler.py
+          docker exec scheduler-scheduler-1 pytest tests/test_scheduler.py
       - name: Delete Service Account Key
         if: always()
         run: |
