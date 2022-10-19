@@ -7,12 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10"]
+        python-version: ["3.8"]
         
     permissions:
       contents: 'read'
       id-token: 'write'
-
 
     steps:
       - name: Checkout
@@ -30,11 +29,11 @@ jobs:
       - name: Checkout MySQL Repo
         uses: actions/checkout@v3
         with:
-          repository: sneyd321/mysql-docker-kubernetes
-          path: mysql-docker-kubernetes
+          repository: sneyd321/Redis-docker-kubernetes
+          path: Redis-docker-kubernetes
       - name: Build MySQL
         run: |
-          docker build -t sneyd321/mysql ./mysql-docker-kubernetes
+          docker build -t sneyd321/redis ./Redis-docker-kubernetes
       
       - name: Boot Docker Compose
         run: |
@@ -42,7 +41,7 @@ jobs:
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v4
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.8
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -54,10 +53,7 @@ jobs:
           flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
           # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Run Alembic
-        run: |
-          alembic revision --autogenerate
-          alembic upgrade head
+
       - name: Test with pytest
         run: |
-          pytest tests/test_repository.py --asyncio-mode=strict
+          pytest tests/test_scheduler.py 
