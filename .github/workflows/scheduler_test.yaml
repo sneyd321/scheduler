@@ -26,7 +26,7 @@ jobs:
         uses: 'google-github-actions/setup-gcloud@v0'
       - name: Configure Docker
         run: gcloud auth configure-docker --quiet
-      - name: Checkout MySQL Repo
+      - name: Checkout Redis Repo
         uses: actions/checkout@v3
         with:
           repository: sneyd321/Redis-docker-kubernetes
@@ -35,6 +35,7 @@ jobs:
         run: |
           docker build -t sneyd321/redis ./Redis-docker-kubernetes
           gcloud iam service-accounts keys create ServiceAccount.json --iam-account=scheduler@roomr-222721.iam.gserviceaccount.com
+          gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
       - name: Boot Docker Compose
         run: |
