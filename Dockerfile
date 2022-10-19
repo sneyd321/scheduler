@@ -10,6 +10,6 @@ COPY . .
 RUN sh gcloud-init.sh
 ENV PORT=8084
 
-CMD python main.py
-#CMD uvicorn main:app --host 0.0.0.0 --workers 1 --port $PORT
+#CMD python main.py
+CMD uvicorn main:app --host 0.0.0.0 --workers 1 --port $PORT
 
