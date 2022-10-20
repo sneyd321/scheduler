@@ -1,12 +1,13 @@
 version: '3.5'
 
 services: 
-    scheduler
-      
+  scheduler: 
+    image: sneyd321/scheduler
+    environment:
+      - PORT=8084
+      - REDIS_HOST=localhost
     
-
-   
-   
+    
           
 
  
