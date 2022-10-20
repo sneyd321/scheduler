@@ -12,7 +12,7 @@ class Scheduler:
         output = stream.read()
         print(output)
         time.sleep(10)
-        config.load_kube_config()
+        config.load_kube_config(config_file="/usr/src/app/config")
         self._api_instance = client.BatchV1Api()
         self.redis = RedisHelper()
 
