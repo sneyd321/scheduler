@@ -53,6 +53,7 @@ jobs:
           gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
           public_ip=$(gcloud compute instances list redis-instance-1 --format='get(networkInterfaces[0].networkIP)')
+          echo $public_ip
           docker compose run -eREDIS_HOST=$public_ip scheduler pytest tests/test_scheduler.py
       
       - name: Terraform Destroy
