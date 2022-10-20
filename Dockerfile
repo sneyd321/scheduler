@@ -1,4 +1,4 @@
-FROM google/cloud-sdk:latest
+FROM google/cloud-sdk:slim
 
 WORKDIR /usr/src/app
 
