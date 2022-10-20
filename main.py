@@ -4,7 +4,6 @@ from models.schemas import  LeaseSchema, LeaseScheduleSchema, MaintenanceTicketU
 import uvicorn, os
 
 
-os.system('/usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
 app = FastAPI()
 scheduler = Scheduler()
 
