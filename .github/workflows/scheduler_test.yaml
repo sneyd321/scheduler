@@ -57,7 +57,7 @@ jobs:
           docker exec scheduler pytest tests/test_scheduler.py
       - name: Terraform Destroy
         if: always()
-        run: terraform destroy 
+        run: terraform destroy -auto-approve
       - name: Delete Service Account Key
         if: always()
         run: |
