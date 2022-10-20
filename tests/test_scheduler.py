@@ -1,8 +1,7 @@
 from models.scheduler import Scheduler
 import time
 
-with open("~/.kube/config", mode="r") as f:
-    print(f.read())
+
 
 scheduler = Scheduler()
 

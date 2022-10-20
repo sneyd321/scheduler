@@ -8,7 +8,7 @@ import json, uuid, os
 class Scheduler:
 
     def __init__(self):
-        config.load_kube_config()
+        config.load_kube_config(config_file="~/.kube/config")
         self._api_instance = client.BatchV1Api()
         self.redis = RedisHelper()
 
