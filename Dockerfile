@@ -10,6 +10,7 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+RUN chmod +x /usr/src/app/gcloud-init.sh
 RUN /usr/src/app/gcloud-init.sh
 ENV PORT=$PORT
 ENV REDIS_HOST=localhost
