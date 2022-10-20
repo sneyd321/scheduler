@@ -8,6 +8,7 @@ import json, uuid, os
 class Scheduler:
 
     def __init__(self):
+        os.system('/usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
         config.load_kube_config()
         self._api_instance = client.BatchV1Api()
         self.redis = RedisHelper()
