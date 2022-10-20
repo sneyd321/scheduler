@@ -7,7 +7,7 @@ import os
 
 
 async def test_Scheduler_successfully_schedules_job():
-    stream = os.popen('gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
+    stream = os.popen('/usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
     output = stream.read()
     print(output)
     print("GFDGADSFDSAF")
