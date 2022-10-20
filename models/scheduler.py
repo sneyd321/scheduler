@@ -3,7 +3,7 @@ from kubernetes.client.exceptions import ApiException, ApiValueError
 from models.job import Job, Container
 from models.redis import RedisHelper
 from models.monad import RedisMaybeMonad
-import json, uuid, os
+import json, uuid, os, time
 
 class Scheduler:
 
@@ -11,6 +11,7 @@ class Scheduler:
         stream = os.popen('/usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
         output = stream.read()
         print(output)
+        time.sleep(10)
         config.load_kube_config()
         self._api_instance = client.BatchV1Api()
         self.redis = RedisHelper()
