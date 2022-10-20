@@ -2,10 +2,16 @@ FROM google/cloud-sdk:slim
 
 WORKDIR /usr/src/app
 
+RUN apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
+
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
+
+
+
+
 
 RUN sh gcloud-init.sh
 ENV PORT=$PORT
