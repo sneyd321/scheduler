@@ -56,14 +56,11 @@ jobs:
           gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
           public_ip=$(gcloud compute instances list redis-instance-1 --format='get(networkInterfaces[0].networkIP)')
-      - uses: addnab/docker-run-action@v3
-        name: Test with pytest
-        with:
-          image: sneyd321/scheduler:latest
-          run: pytest tests/test_scheduler.py
+          docker run --name=scheduler -d -m=1g -e PORT=8084 -e REDIS_HOST=$public_ip sneyd321/scheduler
       
-      
-        
+      - name: Test with pytest
+        run: |
+          docker exec scheduler pytest tests/test_scheduler.py
       - name: Terraform Destroy
         if: always()
         run: terraform destroy -auto-approve
