@@ -3,7 +3,7 @@ FROM google/cloud-sdk:slim
 WORKDIR /usr/src/app
 
 RUN apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
-
+RUN apt-get install kubectl
 
 COPY requirements.txt requirements.txt
 RUN pip3 install --no-cache-dir -r requirements.txt
