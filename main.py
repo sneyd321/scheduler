@@ -3,6 +3,8 @@ from models.scheduler import Scheduler
 from models.schemas import  LeaseSchema, LeaseScheduleSchema, MaintenanceTicketUploadSchema, AddTenantEmailSchema, SignLeaseSchema
 import uvicorn, os
 
+
+os.system('/usr/lib/google-cloud-sdk/bin/gcloud auth activate-service-account scheduler@roomr-222721.iam.gserviceaccount.com --key-file=/usr/src/app/ServiceAccount.json')
 app = FastAPI()
 scheduler = Scheduler()
 
@@ -31,4 +33,5 @@ async def upload_maintenance_ticket(request: MaintenanceTicketUploadSchema):
     return {"status": "Job scheduled successfully"}
 
 if __name__ == '__main__':
+    
     uvicorn.run(app, port=int(os.environ.get("PORT", 8080)))
