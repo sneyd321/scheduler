@@ -53,7 +53,7 @@ jobs:
           gcloud projects add-iam-policy-binding roomr-222721 --member="serviceAccount:scheduler@roomr-222721.iam.gserviceaccount.com" --role="roles/container.serviceAgent"
           docker build -t sneyd321/scheduler .
           
-          PUBLIC_IP=$(gcloud compute instances describe redis-test-instance-1 --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+          PUBLIC_IP=$(gcloud compute instances describe redis-test-instance-1 --zone=us-central1-a --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
           
           echo $PUBLIC_IP
           docker compose run -eREDIS_HOST=$PUBLIC_IP scheduler pytest tests/test_scheduler.py
