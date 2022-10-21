@@ -164,7 +164,6 @@ class AddTenantEmailSchema(BaseModel):
     houseKey: str
     documentURL: str
     firebaseId: str
-    deviceId: str
 
 class SignLeaseSchema(BaseModel):
     firstName: str
@@ -175,4 +174,3 @@ class SignLeaseSchema(BaseModel):
     tenantState: str
     signiture: str
     firebaseId: str
-    deviceId: str

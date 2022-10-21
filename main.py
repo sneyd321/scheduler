@@ -12,7 +12,7 @@ async def health_check():
     return {"status": 200}
 
 @app.post("/SignLease")
-async def sign_lease(signLease: SignLeaseSchema):
+async def sign_lease(request: SignLeaseSchema):
     scheduler.schedule_sign_lease_tenant(request.dict())
     return {"status": "Job scheduled successfully"}
 
@@ -33,4 +33,4 @@ async def upload_maintenance_ticket(request: MaintenanceTicketUploadSchema):
 
 if __name__ == '__main__':
     
-    uvicorn.run(app, port=int(os.environ.get("PORT", 8080)))
+    uvicorn.run(app, port=int(os.environ.get("PORT", 8084)))
