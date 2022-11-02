@@ -6,6 +6,8 @@ services:
     environment:
       - PORT=8084
       - REDIS_HOST=localhost
+    ports:
+      - 8084:8084
     
     
           

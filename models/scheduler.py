@@ -37,6 +37,7 @@ class Scheduler:
         monad = RedisMaybeMonad(uuidValue, json.dumps(data)) \
             .bind(self.redis.set_key)
         if monad.has_errors():
+            print(monad.error_status)
             return uuidValue
 
         job = Job(uuidValue)

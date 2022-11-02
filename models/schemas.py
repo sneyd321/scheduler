@@ -130,6 +130,7 @@ class LeaseSchema(BaseModel):
 class LeaseScheduleSchema(BaseModel):
     firebaseId: str
     lease: Union[LeaseSchema, None]
+    signature: str
 
 class LeaseResponseSchema(BaseModel):
     id: int
