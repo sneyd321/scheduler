@@ -129,24 +129,9 @@ class LeaseSchema(BaseModel):
 
 class LeaseScheduleSchema(BaseModel):
     firebaseId: str
+    houseKey: str
     lease: Union[LeaseSchema, None]
     signature: str
-
-class LeaseResponseSchema(BaseModel):
-    id: int
-    houseId: int
-    documentURL: str = None
-    documentName: str
-    landlordInfo: Union[LandlordInfoSchema, None]
-    landlordAddress: Union[LandlordAddressSchema, None]
-    rentalAddress: Union[RentalAddressSchema, None]
-    rent: Union[RentSchema, None]
-    tenancyTerms: Union[TenancyTermsSchema, None]
-    services: Union[List[ServiceSchema], None]
-    utilities: Union[List[UtilitySchema], None] 
-    rentDeposits: Union[List[RentDepositSchema], None] 
-    rentDiscounts: Union[List[RentDiscoutSchema], None] 
-    additionalTerms: Union[List[AdditionalTermSchema], None] 
 
 class MaintenanceTicketUploadSchema(BaseModel):
     firebaseId: str
@@ -174,4 +159,5 @@ class SignLeaseSchema(BaseModel):
     tenantPosition: int
     tenantState: str
     signiture: str
+    houseKey: str
     firebaseId: str
