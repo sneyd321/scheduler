@@ -158,6 +158,6 @@ class SignLeaseSchema(BaseModel):
     documentURL: str
     tenantPosition: int
     tenantState: str
-    signiture: str
+    signature: str
     houseKey: str
     firebaseId: str
