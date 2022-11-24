@@ -111,7 +111,7 @@ class Limit:
         self.cpu = cpu
         self.memory = memory
 
-    def to_json():
+    def to_json(self):
         return {
             "cpu": self.cpu,
             "memory": self.memory
@@ -122,7 +122,7 @@ class Request:
         self.cpu = cpu
         self.memory = memory
 
-    def to_json():
+    def to_json(self):
         return {
             "cpu": self.cpu,
             "memory": self.memory
