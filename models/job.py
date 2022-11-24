@@ -81,8 +81,8 @@ class Container:
         self.image = f"us-central1-docker.pkg.dev/roomr-222721/roomr-docker-repo/{image}:latest"
         self.name = name
         self.environmentVariables = []
-        self.request = Request("250m", "64Mi")
-        self.limit = Limit("500m", "128Mi")
+        self.resources = Resources()
+        
         
 
     def add_command(self, command):
@@ -97,13 +97,20 @@ class Container:
             "image": self.image,
             "name": self.name,
             "env": self.environmentVariables,
-            "resources": {
-                "requests": self.request.to_json(),
-                "limit": self.to_json()
-            }
+            "resources": self.resources.to_json()
         }
 
+class Resources:
+    
+    def __init__(self):
+        self.request = Request("250m", "64Mi")
+        self.limit = Limit("500m", "128Mi")
 
+    def to_json(self):
+        return {
+            "requests": self.request.to_json(),
+            "limit": self.limit.to_json()
+        }
 
 class Limit:
 
