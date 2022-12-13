@@ -54,6 +54,12 @@ class Scheduler:
     def schedule_maintenance_ticket_job(self, data):
         self.schedule_job("upload-service", data)
 
+    def schedule_tenant_profile_job(self, data):
+        self.schedule_job("tenant-profile-service", data)
+
+    def schedule_landlord_profile_job(self, data):
+        self.schedule_job("landlord-profile-service", data)
+
     def schedule_lease_ticket_job(self, data):
         self.schedule_job("generate-lease", data)
 

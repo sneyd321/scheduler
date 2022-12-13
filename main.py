@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from models.scheduler import Scheduler
-from models.schemas import  LeaseSchema, LeaseScheduleSchema, MaintenanceTicketUploadSchema, AddTenantEmailSchema, SignLeaseSchema
+from models.schemas import  LeaseSchema, LeaseScheduleSchema, MaintenanceTicketUploadSchema, AddTenantEmailSchema, SignLeaseSchema, TenantProfileUpload, LandlordProfileUpload
 import uvicorn, os
 
 
@@ -30,6 +30,19 @@ async def create_lease(request: LeaseScheduleSchema):
 async def upload_maintenance_ticket(request: MaintenanceTicketUploadSchema):
     scheduler.schedule_maintenance_ticket_job(request.dict())
     return {"status": "Job scheduled successfully"}
+
+
+@app.post('/Profile/Tenant')
+async def upload_tenant_profile(request: TenantProfileUpload):
+    scheduler.schedule_tenant_profile_job(request.dict())
+    return {"status": "Job scheduled successfully"}
+
+@app.post('/Profile/Landlord')
+async def upload_landlord_profile(request: LandlordProfileUpload):
+    scheduler.schedule_landlord_profile_job(request.dict())
+    return {"status": "Job scheduled successfully"}
+
+
 
 if __name__ == '__main__':
     uvicorn.run(app, port=int(os.environ.get("PORT", 8084)))

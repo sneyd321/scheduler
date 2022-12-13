@@ -161,3 +161,20 @@ class SignLeaseSchema(BaseModel):
     signature: str
     houseKey: str
     firebaseId: str
+
+
+class TenantProfileUpload(BaseModel):
+    firebaseId: str
+    imageURL: str
+    houseKey: str
+    firstName: str
+    lastName: str
+    image: str
+
+class LandlordProfileUpload(BaseModel):
+    firebaseId: str
+    imageURL: str
+    houseKey: str
+    firstName: str
+    lastName: str
+    image: str
